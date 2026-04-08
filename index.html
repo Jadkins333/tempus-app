@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#08090a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="Tempus — Year Progress & Event Countdown Tracker">
+  <title>Tempus</title>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="12" stroke="var(--accent)" stroke-width="2" opacity="0.6"/>
+        <path d="M14 6v8l5.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <h1 class="logo-text">Tempus</h1>
+    </div>
+    <button class="icon-btn" id="settingsBtn" aria-label="Settings">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round">
+        <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main">
+    <!-- Year Progress Hero -->
+    <section class="year-hero">
+      <div class="year-stats">
+        <div class="year-percentage" id="yearPercent">0%</div>
+        <div class="year-label">of <span id="currentYear">2026</span> complete</div>
+      </div>
+      <div class="year-meta">
+        <div class="meta-item">
+          <span class="meta-value" id="dayOfYear">0</span>
+          <span class="meta-label">Day</span>
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-item">
+          <span class="meta-value" id="daysRemaining">0</span>
+          <span class="meta-label">Remaining</span>
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-item">
+          <span class="meta-value" id="weeksRemaining">0</span>
+          <span class="meta-label">Weeks Left</span>
+        </div>
+      </div>
+      <div class="dot-grid" id="dotGrid"></div>
+    </section>
+
+    <!-- Countdowns Section -->
+    <section class="countdowns-section">
+      <div class="section-header">
+        <h2 class="section-title">Countdowns</h2>
+        <span class="countdown-count" id="countdownCount">0</span>
+      </div>
+      <div class="countdowns-list" id="countdownsList"></div>
+      <div class="empty-state" id="emptyState" style="display:none;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" opacity="0.4">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <p>No countdowns yet</p>
+        <p class="empty-sub">Tap + to track an event</p>
+      </div>
+    </section>
+
+    <!-- Premium Banner (shown for free users) -->
+    <section class="premium-banner" id="premiumBanner">
+      <div class="premium-glow"></div>
+      <div class="premium-content">
+        <div class="premium-badge">PRO</div>
+        <div class="premium-text">
+          <h3>Unlock Tempus Premium</h3>
+          <p>Unlimited countdowns, 9 themes, and more — $2.99 once, forever.</p>
+        </div>
+      </div>
+      <button class="premium-btn" id="premiumBtn">Upgrade</button>
+    </section>
+  </main>
+
+  <!-- FAB -->
+  <button class="fab" id="addEventBtn" aria-label="Add countdown">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+  </button>
+
+  <!-- Add Event Modal -->
+  <div class="modal-overlay" id="addEventModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>New Countdown</h2>
+        <button class="icon-btn modal-close" data-modal="addEventModal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <form id="addEventForm">
+        <div class="form-group">
+          <label for="eventName">Event Name</label>
+          <input type="text" id="eventName" placeholder="e.g. Summer Vacation" required maxlength="50" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="eventDate">Date</label>
+          <input type="date" id="eventDate" required>
+        </div>
+        <div class="form-group">
+          <label>Color</label>
+          <div class="color-picker" id="colorPicker">
+            <button type="button" class="color-dot active" data-color="#5e6ad2" style="background:#5e6ad2"></button>
+            <button type="button" class="color-dot" data-color="#10b981" style="background:#10b981"></button>
+            <button type="button" class="color-dot" data-color="#f59e0b" style="background:#f59e0b"></button>
+            <button type="button" class="color-dot" data-color="#ef4444" style="background:#ef4444"></button>
+            <button type="button" class="color-dot" data-color="#8b5cf6" style="background:#8b5cf6"></button>
+            <button type="button" class="color-dot" data-color="#06b6d4" style="background:#06b6d4"></button>
+            <button type="button" class="color-dot" data-color="#ec4899" style="background:#ec4899"></button>
+            <button type="button" class="color-dot" data-color="#f97316" style="background:#f97316"></button>
+          </div>
+        </div>
+        <button type="submit" class="btn-primary">Add Countdown</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="modal-overlay" id="settingsModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Settings</h2>
+        <button class="icon-btn modal-close" data-modal="settingsModal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="settings-body">
+        <!-- Premium Status -->
+        <div class="settings-group">
+          <div class="settings-label">Status</div>
+          <div class="premium-status" id="premiumStatus">
+            <span class="status-badge free">Free</span>
+          </div>
+        </div>
+
+        <!-- Themes -->
+        <div class="settings-group">
+          <div class="settings-label">Theme</div>
+          <div class="theme-grid" id="themeGrid"></div>
+        </div>
+
+        <!-- Data -->
+        <div class="settings-group">
+          <div class="settings-label">Data</div>
+          <div class="settings-actions">
+            <button class="btn-secondary" id="exportBtn">Export Data</button>
+            <button class="btn-secondary" id="importBtn">Import Data</button>
+            <input type="file" id="importFile" accept=".json" style="display:none">
+          </div>
+        </div>
+
+        <!-- Notifications -->
+        <div class="settings-group">
+          <div class="settings-label">Notifications</div>
+          <div class="settings-actions">
+            <button class="btn-secondary" id="notifyBtn">Enable Reminders</button>
+          </div>
+        </div>
+
+        <!-- About -->
+        <div class="settings-group">
+          <div class="settings-label about-text">
+            Tempus v1.0 — Year Progress & Countdown Tracker<br>
+            <span class="text-muted">Built with ❤️ as a PWA</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm Delete Modal -->
+  <div class="modal-overlay" id="deleteModal">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <h2>Delete Countdown?</h2>
+      </div>
+      <p class="text-muted" style="margin-bottom:20px;">This action cannot be undone.</p>
+      <div class="modal-actions">
+        <button class="btn-secondary" data-modal="deleteModal">Cancel</button>
+        <button class="btn-danger" id="confirmDeleteBtn">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
