@@ -1,13 +1,13 @@
 // Tempus Service Worker — Cache-First
-const CACHE_NAME = 'tempus-v2';
+const CACHE_NAME = 'tempus-v3';
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/styles.css',
-  '/app.js',
-  '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png'
+  './',
+  './index.html',
+  './styles.css',
+  './app.js',
+  './manifest.json',
+  './icons/icon-192.png',
+  './icons/icon-512.png'
 ];
 
 // Install — cache all assets

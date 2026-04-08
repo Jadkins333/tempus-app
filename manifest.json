@@ -2,7 +2,7 @@
   "name": "Tempus",
   "short_name": "Tempus",
   "description": "Year Progress & Event Countdown Tracker",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#08090a",
   "theme_color": "#08090a",
@@ -10,13 +10,13 @@
   "categories": ["productivity", "utilities"],
   "icons": [
     {
-      "src": "/icons/icon-192.png",
+      "src": "./icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/icons/icon-512.png",
+      "src": "./icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
