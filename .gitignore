@@ -1,3 +1,9 @@
 node_modules/
 .env
 PLAN.md
+generate-og-image.py
+generate-icons.js
+server.js
+start.sh
+package.json
+package-lock.json

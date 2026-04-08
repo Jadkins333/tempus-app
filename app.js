@@ -57,7 +57,7 @@ function checkPremium() {
 
 function unlockPremium() {
   // Redirect to Stripe Payment Link
-  const returnUrl = encodeURIComponent(window.location.origin + '/?premium=activated');
+  const returnUrl = encodeURIComponent(window.location.origin + window.location.pathname + '?premium=activated');
   const paymentUrl = STRIPE_PAYMENT_LINK.includes('?')
     ? `${STRIPE_PAYMENT_LINK}&success_url=${returnUrl}`
     : `${STRIPE_PAYMENT_LINK}?success_url=${returnUrl}`;

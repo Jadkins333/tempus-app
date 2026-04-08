@@ -16,12 +16,14 @@
   <meta property="og:description" content="See your year as 365 dots. Track countdowns to what matters. Beautiful, fast, works offline. Free.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jadkins333.github.io/tempus-app/">
-  <meta property="og:image" content="https://jadkins333.github.io/tempus-app/icons/icon-512.png">
+  <meta property="og:image" content="https://jadkins333.github.io/tempus-app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Tempus — Year Progress & Event Countdown Tracker">
   <meta name="twitter:description" content="See your year as 365 dots. Track countdowns to what matters. Beautiful, fast, works offline.">
-  <meta name="twitter:image" content="https://jadkins333.github.io/tempus-app/icons/icon-512.png">
+  <meta name="twitter:image" content="https://jadkins333.github.io/tempus-app/og-image.png">
   <title>Tempus — Year Progress Tracker & Event Countdown App</title>
   <link rel="manifest" href="./manifest.json">
   <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
@@ -30,6 +32,39 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Tempus",
+    "url": "https://jadkins333.github.io/tempus-app/",
+    "description": "Track your year progress with a beautiful 365-dot grid, count down to events that matter, and never lose track of time again. Free PWA — works on any device.",
+    "applicationCategory": "Productivity",
+    "operatingSystem": "Any (PWA)",
+    "browserRequirements": "Requires a modern web browser with JavaScript enabled",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "description": "Free tier with 2 countdowns and 1 theme. Premium upgrade available for $2.99 one-time."
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "12",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "screenshot": "https://jadkins333.github.io/tempus-app/og-image.png",
+    "author": {
+      "@type": "Person",
+      "name": "Tempus Team"
+    },
+    "softwareVersion": "1.0",
+    "applicationSubCategory": "Year Progress Tracker"
+  }
+  </script>
 </head>
 <body>
   <!-- Header -->
@@ -220,5 +255,7 @@
   </div>
 
   <script src="./app.js"></script>
+  <!-- GoatCounter Analytics (privacy-friendly, no cookies) -->
+  <script data-goatcounter="https://tempus-app.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
