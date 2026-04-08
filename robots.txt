@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jadkins333.github.io/tempus-app/sitemap.xml
